@@ -3,5 +3,26 @@
     "dotenv": "^16.0.3",
     "inquirer": "^9.1.4",
     "mysql2": "^2.3.3"
-  }
+  },
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npx nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krenbot/employee-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Krenbot/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/Krenbot/employee-tracker#readme",
+  "description": ""
 }
