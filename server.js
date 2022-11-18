@@ -2,7 +2,7 @@ const inquirer = require('inquirer')
 const sql = require('mysql2')
 require('dotenv').config()
 const cTable = require('console.table');
-const Connection = require('mysql2/typings/mysql/lib/Connection');
+const connection = require('mysql2/typings/mysql/lib/Connection');
 
 const viewDepartments = async () => {
     // THEN I am presented with a formatted table showing department names and department ids
@@ -30,7 +30,7 @@ const viewRoles = async () => {
 
 const viewEmployees = async () => {
     // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-        try {
+    try {
         const [results] = await connection.promise().query(
             'SELECT * FROM employees')
         console.table(results)
@@ -42,10 +42,26 @@ const viewEmployees = async () => {
 
 const addDepartment = async () => {
     // THEN I am prompted to enter the name of the department and that department is added to the database
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Department Name:'
+        }
+    ])
+    try {
+        const [results] = await connection.promise().query(
+            'INSERT INTO department (name) VALUES ?', answers.name)
+        console.table(results)
+        promptChoices()
+    } catch (err) {
+        throw new Error(err)
+    }
 }
 
 const addRole = async () => {
     // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
+
 }
 
 const addEmployee = async () => {
@@ -59,9 +75,38 @@ const updateEmployee = async () => {
 const promptChoices = async () => {
     const choices = await inquirer.prompt([{
         type: 'list',
-        message: 'Choose an action',
         name: 'choices',
-        choices: ['VIEW all Departments', 'VIEW all Roles', 'VIEW all Employees', 'ADD a Department', "ADD a Role", 'ADD an Employee', "UPDATE Employees"]
+        message: 'Choose an action',
+        choices: ['VIEW all Departments', 'VIEW all Roles', 'VIEW all Employees', 'ADD a Department', "ADD a Role", 'ADD an Employee', 'UPDATE Employees']
     }
     ])
+
+    if (answers.choices === 'VIEW all Departments') {
+        viewDepartments()
+    } else if (answers.choices === 'VIEW all Roles') {
+        viewRoles()
+    } else if (answers.choices === 'VIEW all Employees') {
+        viewEmployees()
+    } else if (answers.choices === 'ADD a Department') {
+        addDepartment()
+    } else if (answers.choices === 'ADD a Role') {
+        addRole()
+    } else if (answers.choices === 'ADD an Employee') {
+        addEmployee()
+    } else if (answers.choices === 'UPDATE Employees') {
+        updateEmployee()
+    } else { 
+        return
+    }
 }
+
+// BONUS
+// Update employee managers.
+
+// View employees by manager.
+
+// View employees by department.
+
+// Delete departments, roles, and employees.
+
+// View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
