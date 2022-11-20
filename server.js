@@ -61,6 +61,32 @@ const addDepartment = async () => {
 
 const addRole = async () => {
     // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Role Name:'
+        }, {
+            type: 'number',
+            name: 'salary',
+            message: 'Salary Amount (ex: 10000): '
+        }, {
+            type: 'list',
+            name: 'name',
+            message: 'Role Name:'
+        }
+    ])
+    //////////////////////////////////
+    // try {
+    //     const [results] = await connection.promise().query(
+    //         'INSERT INTO department (name) VALUES ?', answers.name)
+    //     console.table(results)
+    //     promptChoices()
+    // } catch (err) {
+    //     throw new Error(err)
+    // }
+
+
 
 }
 
@@ -110,3 +136,12 @@ const promptChoices = async () => {
 // Delete departments, roles, and employees.
 
 // View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
+
+
+ /*                                                                  
+_____           _                     _____                         
+|   __|_____ ___| |___ _ _ ___ ___    |     |___ ___ ___ ___ ___ ___ 
+|   __|     | . | | . | | | -_| -_|   | | | | .'|   | .'| . | -_|  _|
+|_____|_|_|_|  _|_|___|_  |___|___|   |_|_|_|__,|_|_|__,|_  |___|_|  
+            |_|       |___|                             |___|        
+*/
