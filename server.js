@@ -10,12 +10,10 @@ function init() {
     |   __|_____ ___| |___ _ _ ___ ___    |     |___ ___ ___ ___ ___ ___ 
     |   __|     | . | | . | | | -_| -_|   | | | | .'|   | .'| . | -_|  _|
     |_____|_|_|_|  _|_|___|_  |___|___|   |_|_|_|__,|_|_|__,|_  |___|_|  
-                |_|       |___|                             |___|      `
-    )
+                |_|       |___|                             |___|      
+                `)
     promptChoices()
 }
-
-
 
 const viewDepartments = async () => {
     // THEN I am presented with a formatted table showing department names and department ids
@@ -27,7 +25,7 @@ const viewDepartments = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const viewRoles = async () => {
     // THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
@@ -39,7 +37,7 @@ const viewRoles = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const viewEmployees = async () => {
     // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
@@ -51,7 +49,7 @@ const viewEmployees = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const addDepartment = async () => {
     // THEN I am prompted to enter the name of the department and that department is added to the database
@@ -70,7 +68,7 @@ const addDepartment = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const addRole = async () => {
     // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
@@ -98,7 +96,7 @@ const addRole = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const addEmployee = async () => {
     // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
@@ -131,7 +129,7 @@ const addEmployee = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const updateEmployee = async () => {
     // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
@@ -155,7 +153,7 @@ const updateEmployee = async () => {
     } catch (err) {
         throw new Error(err)
     }
-} 
+}
 
 const promptChoices = async () => {
     const answers = await inquirer.prompt([{
@@ -187,13 +185,68 @@ const promptChoices = async () => {
 
 init()
 
-// BONUS
 // Update employee managers.
+const updateEmployeeManager = async () => {}
 
 // View employees by manager.
-
 // View employees by department.
 
 // Delete departments, roles, and employees.
+const deleteDepartment = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Department Name: '
+        }
+    ])
+
+    try {
+const [results] = await connection.promise().query(
+    'DELETE FROM department WHERE name = ?', answers.name)
+    } catch (err) {
+        throw new Error(err)
+    }
+    console.log('Department has been deleted!')
+    promptChoices()
+} //CHECK
+
+const deleteRole = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: 'Role title: '
+        }
+    ])
+
+    try {
+const [results] = await connection.promise().query(
+    'DELETE FROM role WHERE title = ?', answers.title)
+    } catch (err) {
+        throw new Error(err)
+    }
+    console.log('Role has been deleted!')
+    promptChoices()
+} //CHECK
+
+const deleteEmployee = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Employee ID#: '
+        }
+    ])
+    try {
+const [results] = await connection.promise().query(
+    'DELETE FROM employee WHERE id = ?', answers.id)
+    } catch (err) {
+        throw new Error(err)
+    }
+    console.log('Employee deleted!')
+    promptChoices()
+} //CHECK
 
 // View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
+const showBudget = async () => {}
