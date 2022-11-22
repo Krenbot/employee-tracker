@@ -40,7 +40,8 @@ SO THAT I can organize and plan my business
 ```
 
 ## Demonstration
-![]()
+![Demonstration imgage](./assets/demo-image.jpg)
+A video demonstration may be found [HERE](https://drive.google.com/file/d/1bn76oudXFQk-bD-tphMT8f1uy4NDCTqK/view)
 
 ## Installation
 * For installation onto local machine, clone provided repository.
