@@ -62,7 +62,9 @@ const addDepartment = async () => {
     ])
     try {
         const [results] = await connection.promise().query(
-            'INSERT INTO department (name) VALUES (?)', answers.name)
+            'INSERT INTO department (name) VALUES (?)',
+            answers.name)
+
         console.table('Department has been added!')
         promptChoices()
     } catch (err) {
@@ -90,8 +92,10 @@ const addRole = async () => {
 
     try {
         const [results] = await connection.promise().query(
-            'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)', [answers.name, answers.salary, answers.department_id])
-        console.log('Role has been ADDED to database!')
+            'INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)',
+            [answers.name, answers.salary, answers.department_id])
+
+        console.log('ROLE has been ADDED to database!')
         promptChoices()
     } catch (err) {
         throw new Error(err)
@@ -123,8 +127,10 @@ const addEmployee = async () => {
     try {
         console.log(answers)
         const [results] = await connection.promise().query(
-            'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [answers.first_name, answers.last_name, answers.role_id, answers.manager_id])
-        console.log('Employee has been ADDED!')
+            'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', 
+            [answers.first_name, answers.last_name, answers.role_id, answers.manager_id])
+        
+            console.log('EMPLOYEE has been ADDED!')
         promptChoices()
     } catch (err) {
         throw new Error(err)
@@ -147,8 +153,10 @@ const updateEmployee = async () => {
 
     try {
         const [results] = await connection.promise().query(
-            'UPDATE employee SET role_id = ? WHERE id = ?', [(answers.role_id), (answers.id)])
-        console.log('Employee has been UDPATED')
+            'UPDATE employee SET role_id = ? WHERE id = ?', 
+            [(answers.role_id), (answers.id)])
+        
+            console.log('EMPLOYEE has been UDPATED')
         promptChoices()
     } catch (err) {
         throw new Error(err)
@@ -186,12 +194,11 @@ const promptChoices = async () => {
 init()
 
 // Update employee managers.
-const updateEmployeeManager = async () => {}
+const updateEmployeeManager = async () => { }
 
 // View employees by manager.
 // View employees by department.
 
-// Delete departments, roles, and employees.
 const deleteDepartment = async () => {
     const answers = await inquirer.prompt([
         {
@@ -202,8 +209,8 @@ const deleteDepartment = async () => {
     ])
 
     try {
-const [results] = await connection.promise().query(
-    'DELETE FROM department WHERE name = ?', answers.name)
+        const [results] = await connection.promise().query(
+            'DELETE FROM department WHERE name = ?', answers.name)
     } catch (err) {
         throw new Error(err)
     }
@@ -221,8 +228,8 @@ const deleteRole = async () => {
     ])
 
     try {
-const [results] = await connection.promise().query(
-    'DELETE FROM role WHERE title = ?', answers.title)
+        const [results] = await connection.promise().query(
+            'DELETE FROM role WHERE title = ?', answers.title)
     } catch (err) {
         throw new Error(err)
     }
@@ -239,8 +246,8 @@ const deleteEmployee = async () => {
         }
     ])
     try {
-const [results] = await connection.promise().query(
-    'DELETE FROM employee WHERE id = ?', answers.id)
+        const [results] = await connection.promise().query(
+            'DELETE FROM employee WHERE id = ?', answers.id)
     } catch (err) {
         throw new Error(err)
     }
@@ -249,4 +256,4 @@ const [results] = await connection.promise().query(
 } //CHECK
 
 // View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
-const showBudget = async () => {}
+const showBudget = async () => { }
