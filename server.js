@@ -194,66 +194,66 @@ const promptChoices = async () => {
 init()
 
 // Update employee managers.
-const updateEmployeeManager = async () => { }
+// const updateEmployeeManager = async () => { }
 
 // View employees by manager.
 // View employees by department.
 
-const deleteDepartment = async () => {
-    const answers = await inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Department Name: '
-        }
-    ])
+// const deleteDepartment = async () => {
+//     const answers = await inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'name',
+//             message: 'Department Name: '
+//         }
+//     ])
 
-    try {
-        const [results] = await connection.promise().query(
-            'DELETE FROM department WHERE name = ?', answers.name)
-    } catch (err) {
-        throw new Error(err)
-    }
-    console.log('Department has been deleted!')
-    promptChoices()
-} //CHECK
+//     try {
+//         const [results] = await connection.promise().query(
+//             'DELETE FROM department WHERE name = ?', answers.name)
+//     } catch (err) {
+//         throw new Error(err)
+//     }
+//     console.log('Department has been deleted!')
+//     promptChoices()
+// } //CHECK
 
-const deleteRole = async () => {
-    const answers = await inquirer.prompt([
-        {
-            type: 'input',
-            name: 'title',
-            message: 'Role title: '
-        }
-    ])
+// const deleteRole = async () => {
+//     const answers = await inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'title',
+//             message: 'Role title: '
+//         }
+//     ])
 
-    try {
-        const [results] = await connection.promise().query(
-            'DELETE FROM role WHERE title = ?', answers.title)
-    } catch (err) {
-        throw new Error(err)
-    }
-    console.log('Role has been deleted!')
-    promptChoices()
-} //CHECK
+//     try {
+//         const [results] = await connection.promise().query(
+//             'DELETE FROM role WHERE title = ?', answers.title)
+//     } catch (err) {
+//         throw new Error(err)
+//     }
+//     console.log('Role has been deleted!')
+//     promptChoices()
+// } //CHECK
 
-const deleteEmployee = async () => {
-    const answers = await inquirer.prompt([
-        {
-            type: 'input',
-            name: 'id',
-            message: 'Employee ID#: '
-        }
-    ])
-    try {
-        const [results] = await connection.promise().query(
-            'DELETE FROM employee WHERE id = ?', answers.id)
-    } catch (err) {
-        throw new Error(err)
-    }
-    console.log('Employee deleted!')
-    promptChoices()
-} //CHECK
+// const deleteEmployee = async () => {
+//     const answers = await inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'id',
+//             message: 'Employee ID#: '
+//         }
+//     ])
+//     try {
+//         const [results] = await connection.promise().query(
+//             'DELETE FROM employee WHERE id = ?', answers.id)
+//     } catch (err) {
+//         throw new Error(err)
+//     }
+//     console.log('Employee deleted!')
+//     promptChoices()
+// } //CHECK
 
 // View the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
-const showBudget = async () => { }
+// const showBudget = async () => { }
